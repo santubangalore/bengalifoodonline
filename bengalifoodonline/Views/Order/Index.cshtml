@@ -1,0 +1,82 @@
+﻿@model IEnumerable<BengaliFoodOnline.Models.PendingOrderViewModel>
+
+@{
+    ViewBag.Title = "Pending orders";
+}
+<script>
+    $(document).ready(function () {
+
+
+    });
+</script>
+<script src="~/ViewModel/FoodOrderController.js"></script>
+<h2>Pending Orders</h2>
+<div ng-controller="FoodOrderController">
+    <div class="center">
+        <div class="container">
+            <span>From date:</span>
+            <input type="text" class="wow fadeInDown animated" id="FromDate" ng-model="FromDate" />
+            <span>To date:</span>
+            <input type="text" class="wow fadeInDown animated" id="ToDate" ng-model="ToDate" />
+
+            <button type="button" class="btn btn-info btn-lg" ng-click="showDetail" id="setdate" ng-click="GetPendingOrders()">Searc</button>
+
+        </div>
+    </div>
+    <div class="container">
+          <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-3">{{CreatedDate}}</div>
+                <div class="col-md-3">{{OrderId}}</div>
+                <div class="col-md-3">{{FirstName}}</div>
+                <div class="col-md-3">{{LastName}}</div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-3">{{Total}}</div>
+                <div class="col-md-3">{{OrderDate}}</div>
+                <div class="col-md-3">{{Phone}}</div>
+                <div class="col-md-3">{{Address}}</div>
+            </div>
+        </div>
+    </div>
+    <table>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderDate)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th></th>
+        </tr>
+    </table>
+
+    <div class="row" ng-repeat="item in records">
+      
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-3">{{item.FoodItemName}}</div>
+                <div class="col-md-3">{{item.Quantity}}</div>
+                <div class="col-md-3">{{item.Price}}</div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+    </div>
+</div>

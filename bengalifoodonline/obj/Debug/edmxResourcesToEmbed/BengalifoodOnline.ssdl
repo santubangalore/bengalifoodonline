@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="bengalifood_onlineModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="bengalifood_onlineModelStoreContainer">
+    <EntitySet Name="Company" EntityType="bengalifood_onlineModel.Store.Company" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Customer" EntityType="bengalifood_onlineModel.Store.Customer" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FoodmenuItems" EntityType="bengalifood_onlineModel.Store.FoodmenuItems" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Order" EntityType="bengalifood_onlineModel.Store.Order" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OrderDetails" EntityType="bengalifood_onlineModel.Store.OrderDetails" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Payment" EntityType="bengalifood_onlineModel.Store.Payment" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ShoppingCartItems" EntityType="bengalifood_onlineModel.Store.ShoppingCartItems" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="CompanyID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyCode" Type="varchar" MaxLength="50" />
+    <Property Name="CompanyName" Type="varchar(max)" />
+    <Property Name="CompanyAddress" Type="varchar(max)" />
+    <Property Name="CompanyLocation" Type="varchar" MaxLength="50" />
+    <Property Name="LatLong" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerName" Type="varchar" MaxLength="50" />
+    <Property Name="CustomerAddress" Type="varchar(max)" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" />
+    <Property Name="Location" Type="image" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="CompanyID" Type="int" />
+  </EntityType>
+  <EntityType Name="FoodmenuItems">
+    <Key>
+      <PropertyRef Name="FoodItemID" />
+    </Key>
+    <Property Name="FoodItemID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FoodItemName" Type="varchar" MaxLength="50" />
+    <Property Name="Description" Type="varchar(max)" />
+    <Property Name="Price" Type="int" />
+    <Property Name="ImageUrl" Type="varchar" MaxLength="100" />
+    <Property Name="MainCourse" Type="bit" />
+    <Property Name="Active" Type="varchar" MaxLength="5" />
+    <Property Name="CompanyID" Type="int" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="OrderDate" Type="datetime" Nullable="false" />
+    <Property Name="Username" Type="nvarchar(max)" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="City" Type="nvarchar" Nullable="false" MaxLength="40" />
+    <Property Name="State" Type="nvarchar" Nullable="false" MaxLength="40" />
+    <Property Name="PostalCode" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="Country" Type="nvarchar" Nullable="false" MaxLength="40" />
+    <Property Name="Phone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" />
+    <Property Name="Total" Type="decimal" Nullable="false" Scale="2" />
+    <Property Name="PaymentType" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Experation" Type="datetime" />
+    <Property Name="SaveInfo" Type="bit" Nullable="false" />
+    <Property Name="CompanyID" Type="int" />
+    <Property Name="CreatedDate" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="OrderDetails">
+    <Key>
+      <PropertyRef Name="OrderdetailID" />
+    </Key>
+    <Property Name="OrderdetailID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="OrderID" Type="int" />
+    <Property Name="FoodItemID" Type="int" />
+    <Property Name="ItemQuantity" Type="int" />
+    <Property Name="ItemPrice" Type="int" />
+    <Property Name="ItemExtra" Type="int" />
+    <Property Name="ItemDelivery" Type="int" />
+    <Property Name="ItemTotal" Type="int" />
+    <Property Name="CompanyID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="PaymentID" />
+    </Key>
+    <Property Name="PaymentID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="PaymentType" Type="varchar" MaxLength="50" />
+    <Property Name="PaymentReceiptID" Type="varchar" MaxLength="50" />
+    <Property Name="OrderID" Type="int" />
+    <Property Name="CustomerID" Type="int" />
+    <Property Name="CompanyID" Type="int" />
+  </EntityType>
+  <EntityType Name="ShoppingCartItems">
+    <Key>
+      <PropertyRef Name="CartID" />
+    </Key>
+    <Property Name="CartID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CartorderID" Type="int" />
+    <Property Name="CartDate" Type="datetime" />
+    <Property Name="CartUniqID" Type="nvarchar" MaxLength="50" />
+    <Property Name="CartCustomerID" Type="int" />
+    <Property Name="ProductID" Type="int" />
+    <Property Name="ItemQty" Type="int" />
+    <Property Name="CartAmount" Type="int" />
+    <Property Name="Count" Type="int" />
+    <Property Name="CompanyID" Type="int" />
+  </EntityType>
+  <Function Name="NQS_GetAllFoodmenuItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="NQS_GetShoopingCart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cartid" Type="varchar" Mode="In" />
+    <Parameter Name="ProductID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="NQS_GetShoppingCart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cartid" Type="varchar" Mode="In" />
+    <Parameter Name="ProductID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="NQS_InsertShoppingCartItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CartorderID" Type="int" Mode="In" />
+    <Parameter Name="CartDate" Type="datetime" Mode="In" />
+    <Parameter Name="CartUniqID" Type="varchar" Mode="In" />
+    <Parameter Name="CartCustomerID" Type="int" Mode="In" />
+    <Parameter Name="ProductID" Type="int" Mode="In" />
+    <Parameter Name="ItemQty" Type="int" Mode="In" />
+    <Parameter Name="CartAmount" Type="int" Mode="In" />
+    <Parameter Name="Count" Type="int" Mode="In" />
+  </Function>
+  <Function Name="NQS_ShowOrderDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fromdate" Type="datetime" Mode="In" />
+    <Parameter Name="todate" Type="datetime" Mode="In" />
+    <Parameter Name="orderno" Type="int" Mode="In" />
+  </Function>
+</Schema>

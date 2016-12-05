@@ -1,0 +1,28 @@
+﻿@model PagedList.IPagedList<BengaliFoodOnline.FoodmenuItem>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+}
+
+<script>
+    $(window).load(function () {
+       // $('#productlist').css("display", "none");
+    });
+  
+</script>
+<h2></h2>
+
+<div class="center">
+   
+    @*<div class="container">
+        <span>Choose date</span>
+        <input class="wow fadeInDown animated" data-wow-delay=".5s" type="text" id="orderDate" ng-model="orderDate">
+        <button type="button" class="btn btn-info btn-lg" ng-click="showDetail" id="setdate">Set date</button>
+    </div>*@
+</div>
+<div id="productlist" >
+    @{Html.RenderPartial("productdetails", Model);}
+
+</div>
+
+<br />

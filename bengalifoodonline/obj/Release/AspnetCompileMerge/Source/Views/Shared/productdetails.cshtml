@@ -1,0 +1,116 @@
+﻿@model PagedList.IPagedList<BengaliFoodOnline.FoodmenuItem>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+@{
+    ViewBag.Title = "Productlist";
+}
+<script type="text/javascript">
+    $(function () {
+        // Document.ready -> link up remove event handler
+        $(".AddLink").click(function () {
+            // Get the id from the link
+            var recordToAdd = $(this).attr("data-id");
+            if (recordToAdd != '') {
+               
+                var today = new Date();
+                //alert(today);
+                var dd = today.getDate();
+                var mm = today.getMonth() + 1; //January is 0!
+                var yyyy = today.getFullYear();
+
+                if (dd < 10) {
+                    dd = '0' + dd
+                }
+
+                if (mm < 10) {
+                    mm = '0' + mm
+                }
+
+                today = dd + '/' + mm + '/' + yyyy;
+                // Perform the ajax post
+                $.post("/ShoppingCart/AddToCart", {
+                    "MenuItemID": recordToAdd,
+                    "Quantity": 1,
+                    "Odate": today
+                },
+                    function (data) {
+                        $('#cart-status').text(data.CartCount);
+                        $('#hidDiv').html(data.Message);
+
+                    });
+            }
+        });
+    });
+</script>
+<style>
+   .bold {
+          font-family:Verdana;
+          font-size:large;
+          color:darkblue;
+
+    }
+   .big 
+    {
+           font-family:Verdana;
+           font-size:x-large;
+           color:darkblue;
+    }
+  .center {
+    text-align: center;
+    border: 3px solid green;
+    font-family:Verdana;
+    font-size:medium;
+    color:darkred;
+}
+</style>
+<script type="text/javascript">
+   
+</script>
+<h2></h2>
+<div class="center"> <span>Please order 3 hours ago </span>
+    <div id="hidDiv"></div>
+   
+</div>
+<br />
+
+<div class="container" style="width: 90%; margin:auto;">
+
+
+@foreach (var item in Model)
+{
+    <div class="row margin:30 auto; " >
+    
+            <div class="row " style="border:solid;border-width:1px;border-color:aliceblue;margin-bottom:4px;background-color:lightgoldenrodyellow">
+            
+                <div class="col-md-4 col-centered">
+
+                    <img src="@item.ImageUrl"  height="200" width="250"/>
+                </div>
+                <div class="col-md-4 col-centered">
+
+                    @Html.DisplayFor(modelItem => item.FoodItemName, null, new { @class = "bold" })
+                    <p>@Html.DisplayFor(modelItem => item.Description, new { @class = "big" }) </p>
+                </div>
+                <div class="col-md-4 col-centered">
+                    <p> @Html.DisplayFor(modelItem => item.Price, new { @class = "big" })</p>
+                    <a href="#" class="AddLink"  data-id="@item.FoodItemID" data-toggle="modal" data-target="#myModal">Add to Cart</a>
+                </div>
+            </div>
+    </div>
+}
+</div>      
+
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+<div class="row ">
+ <div class="col-md-4 col-centered">
+@Html.PagedListPager(Model, page => Url.Action("Order",
+new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+     </div>
+    <div class="col-md-4 col-centered"></div>
+</div>

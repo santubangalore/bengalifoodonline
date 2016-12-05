@@ -1,0 +1,50 @@
+﻿@model BengaliFoodOnline.Company
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Company</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CompanyCode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CompanyCode)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CompanyName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CompanyName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CompanyAddress)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CompanyAddress)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CompanyLocation)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CompanyLocation)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LatLong)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LatLong)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.CompanyID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

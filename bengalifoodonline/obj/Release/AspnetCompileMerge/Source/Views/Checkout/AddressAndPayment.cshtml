@@ -1,0 +1,241 @@
+﻿@model BengaliFoodOnline.Order
+
+@{
+    ViewBag.Title = "Address And Payment";
+}
+
+<style>
+      .center {
+    text-align: center;
+    border: 3px solid green;
+    font-family:Verdana;
+    font-size:medium;
+    color:darkred;
+}
+</style>
+@*<link rel="stylesheet" href="~/Content/card.css">*@
+<script>
+    $(document).ready(function () {
+        $('#submit').click(function () {
+            var fname = $('#FirstName').val();
+            var lname = $('#FirstName').val();
+            var address = $('#FirstName').val();
+            return true;
+        });
+       // $("#OrderDate").val(new Date());
+
+        $("#OrderDate").datepicker(
+         {
+             minDate: 0,
+             maxDate: 3,
+             dateFormat: 'dd-mm-yy'
+         }
+       ).on('changeDate', function (ev) {
+           $('#OrderDate').Close();
+       });
+
+        $('#setdate').click(function () {
+        
+            $("#OrderDate").attr("disabled", "disabled");
+
+        })
+    });
+    $('.active form').card({ container: $('.card-wrapper') })
+    $('form').card({
+        // a selector or jQuery object for the container
+        // where you want the card to appear
+        container: '.card-wrapper', // *required*
+        numberInput: 'input#number', // optional — default input[name="number"]
+        expiryInput: 'input#expiry', // optional — default input[name="expiry"]
+        cvcInput: 'input#cvc', // optional — default input[name="cvc"]
+        nameInput: 'input#name', // options - defaults input[name="name"]
+
+        width: 200, // optional — default 350px
+        formatting: true // optional - default true
+    });
+    $(document).ready(function () {
+        $("#CreditCard").hide();
+        $("input[name$='PaymentType']").click(function () {
+
+            var test = $(this).val();
+            console.log(test);
+            $("div.desc").hide();
+            if (test == 'DebitCreditCard')
+                $("#CreditCard").show();
+            else {
+                $("#CreditCard").hide();
+            }
+        });
+    });
+    function validate()
+    {
+
+    }
+</script>
+
+<!--<div class="col-lg-4">
+    <div class="demo-container">
+       
+
+        <div class="form-container active">
+            <form action="">
+                <input placeholder="Card number" type="text" name="number">
+                <input placeholder="Full name" type="text" name="name">
+                <input placeholder="MM/YY" type="text" name="expiry">
+                <input placeholder="CVC" type="text" name="cvc">
+            </form>
+        </div>
+
+        <div class="card-wrapper"></div>
+    </div>
+</div>-->
+
+<script src="~/ViewModel/CheckoutController.js"></script>
+<div class="col-lg-10" ng-controller="CheckoutController">
+  <div class="well bs-component">
+    @using (Html.BeginForm(new { @class = "form-horizontal" }))
+    {
+ 
+        <div class="center">
+
+            <div class="container">
+                <span>Choose date:</span>
+                 <input type="text" class = "wow fadeInDown animated" id="OrderDate" ng-model="OrderDate"/>
+              
+                <button type="button" class="btn btn-info btn-lg" ng-click="showDetail" id="setdate">Set date</button>
+                
+            </div>
+        </div>
+      <center> <h2>Address And Payment</h2></center>
+        <fieldset>
+            <legend>Shipping Information</legend>
+
+            <div class="form-group">
+                <label class = "col-lg-2 control-label">First Name</label>
+                <div class="col-lg-10">
+                   <input type="text" id="FirstName" class="form-control" placeholder="FirstName" ng-model="FirstName" />
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                 <label class = "col-lg-2 control-label">Last Name</label>
+                    <div class="col-lg-10">
+                    <input type="text" id="LastName" class="form-control" placeholder="LastName" ng-model="LastName" />
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                </div>
+           
+            </div>
+
+
+            <div class="form-group">
+               <label class = "col-lg-2 control-label">Address</label>
+                <div class="col-lg-10">
+                    <textarea id="address" cols="100" rows="10" ng-model="address"></textarea>
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                 <label class = "col-lg-2 control-label">City</label>
+                <div class="col-lg-10">
+                    <input type="text" id="City" class="form-control" placeholder="City" ng-model="City" value="Bangalore" readonly="readonly"/>
+                    @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+               <label class = "col-lg-2 control-label">State</label>
+                <div class="col-lg-10">
+                    <input type="text" id="State" class="form-control" placeholder="Karnataka" ng-model="State" value="Karnataka" readonly="readonly"/>
+                   
+                    @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.PostalCode, htmlAttributes: new { @class = "col-lg-2 control-label" })
+                <div class="col-lg-10">
+                    <input type="text" id="PostalCode" class="form-control" placeholder="PostalCode" ng-model="PostalCode" />
+                    @Html.ValidationMessageFor(model => model.PostalCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "col-lg-2 control-label" })
+                <div class="col-lg-10">
+                    <input type="text" id="Country" class="form-control" placeholder="Country" ng-model="Country" />
+                    @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <br>
+
+            <div class="form-group">
+                <label class = "col-lg-2 control-label">Phone*</label>
+                <div class="col-lg-10">
+                    <input type="text" id="Phone" class="form-control" placeholder="Phone" ng-model="Phone" onblur="validate()" />
+                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                    <div class="checkbox">
+                        <label>
+                            @Html.CheckBoxFor(model => model.SaveInfo, new { @type = "checkbox" })Save my Info for next time.
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <div class="form-group">
+              <label class = "col-lg-2 control-label">Payment Type</label>
+                <div class="col-lg-10">
+                    @foreach (var name in ViewBag.PaymentTypes)
+                    {
+                        <div><label><input type="radio" name="PaymentType" ng-model='PaymentType' value=@name >@name </label></div>  
+                    }
+                    <span class="help-block">For security the credit card is not stored in our system.</span>
+                </div>
+            </div>
+            <div class="form-group" id="CreditCard">
+                <div><label class="col-lg-2 control-label">Card type</label></div>
+                      <div class="col-lg-10">
+                    <select  id="select">
+                        @foreach (var ccType in ViewBag.CreditCardTypes)
+                        {
+                            <option>@ccType</option>
+                        }
+                    </select>
+                </div>
+                @*<input type="hidden" ng-model="PaymentType" id="" />*@
+            </div>
+           @* <div class="form-group">
+                @Html.LabelFor(model => model.Experation, htmlAttributes: new { @class = "col-lg-2 control-label" })
+                <div class="col-lg-10">
+                    @Html.EditorFor(model => model.Experation)
+                    @Html.ValidationMessageFor(model => model.Experation, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="select" class="col-lg-2 control-label">Credit Card Type</label>
+                <div class="col-lg-10">
+                    <select  id="select">
+                        @foreach (var ccType in ViewBag.CreditCardTypes)
+                        {
+                            <option>@ccType</option>
+                        }
+                    </select>
+                </div>
+            </div>*@
+
+            
+            <br>
+
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-8">
+                    <button type="button" class="btn btn-primary" id="submit" ng-click="OrderSubmit()">Submit Order &raquo;</button>
+                </div>
+            </div>
+        </fieldset>
+    }
+  </div>
+</div>
+<div class="col-lg-10">
+  
+</div>
+
+

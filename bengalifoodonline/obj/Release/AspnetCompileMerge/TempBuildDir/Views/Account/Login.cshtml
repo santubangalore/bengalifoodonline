@@ -1,0 +1,81 @@
+﻿@model BengaliFoodOnline.Models.LoginModel
+
+@{
+    ViewBag.Title = "Log in";
+}
+
+<script src="~/ViewModel/LoginController.js"></script>
+
+<div class="reservation" ng-controller="LoginController">
+    <div class="container">
+        <h3 class="title w3agile wow fadeInDown animated" data-wow-delay=".5s">Login </h3>
+        <div class="book-info">
+            <div class="col-md-5 book-left wow fadeInLeft animated" data-wow-delay=".5s">
+                </div>
+
+                <div class="col-md-7 book-right agileinfo fadeInRight animated" data-wow-delay=".5s">
+                    <form>
+
+                        <label>Login Id</label>
+                        <input class="wow fadeInDown animated" data-wow-delay=".9s" type="text" value="emailId" onfocus="this.value = '';" required="required" ng-model="custname">
+
+                     
+                        <label class="wow fadeInDown animated" data-wow-delay=".5s">Password :</label>
+                        <input class="wow fadeInDown animated" data-wow-delay=".5s" type="text" id="password" ng-model="password">
+                    
+                        <div class="form-left wow fadeInDown animated" data-wow-delay=".7s">
+                       
+                            </div>
+                              <div class="form-right wow fadeInDown animated" data-wow-delay=".7s">
+                            <input type="button" class="form-control" value="Login" ng-click="Login()">
+                        </div>
+                         
+                    </form>
+                     
+                </div>
+               <div class="form-right wow fadeInDown animated" data-wow-delay=".7s">
+                 <label class="wow fadeInDown animated" data-wow-delay=".5s">New user</label>
+                 <input type="button" class="form-control" value="Register" ng-click="Register()">
+               </div>
+        </div>
+    </div>
+</div>
+
+
+@*<section id="loginForm">
+<h2>Use a local account to log in.</h2>
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Log in Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)
+            </li>
+            <li>
+                @Html.CheckBoxFor(m => m.RememberMe)
+                @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
+            </li>
+        </ol>
+        <input type="submit" value="Log in" />
+    </fieldset>
+    <p>
+      
+    </p>
+}
+</section>*@
+
+<section class="social" id="socialLoginForm">
+ 
+</section>
+
+

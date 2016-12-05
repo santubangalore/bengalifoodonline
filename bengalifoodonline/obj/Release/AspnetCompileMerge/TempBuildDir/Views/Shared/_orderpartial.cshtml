@@ -1,0 +1,100 @@
+﻿
+<script src="~/ViewModel/FoodOrderController.js"></script>
+<script>
+    //document.getElementById('phone').addEventListener('keydown', function (e) {
+    //    var key = e.keyCode ? e.keyCode : e.which;
+
+    //    if (!([8, 9, 13, 27, 46, 110, 190].indexOf(key) !== -1 ||
+    //         (key == 65 && (e.ctrlKey || e.metaKey)) ||
+    //         (key >= 35 && key <= 40) ||
+    //         (key >= 48 && key <= 57 && !(e.shiftKey || e.altKey)) ||
+    //         (key >= 96 && key <= 105)
+    //       )) e.preventDefault();
+    //});
+    $(document).ready(function () {
+        $("#orderDate").datepicker(
+         {
+             minDate: 0,
+             maxDate: 1,
+             dateFormat: 'dd-mm-yy'
+         }
+       ).on('changeDate', function (ev) {
+           $('#orderDate').Close();
+       });;
+    });
+</script>
+<div class="reservation" ng-controller="FoodOrderController">
+		<div class="container">
+			<h3 class="title w3agile wow fadeInDown animated" data-wow-delay=".5s">Place an order</h3>
+			<div class="book-info">
+				<div class="col-md-5 book-left wow fadeInLeft animated" data-wow-delay=".5s">
+					<h4 class="wow fadeInDown animated" data-wow-delay=".5s">Working Hours:</h4>
+					<h5 class="wow fadeInDown animated" data-wow-delay=".6s">Monday – Saturday 9:00 a.m – 9:00 p.m <br>
+						Sunday 10 a.m – 9 p.m <br>
+                        For orders around Thanisandra, nagavara, hbr layout,<br> order 3 hours ago <br />
+                        For delivery within 15 km book order one day ahead <br />
+
+						<span class="glyphicon glyphicon-earphone"></span> +91 9035290827 </h5>
+					<span class="burger wow zoomIn animated" data-wow-delay=".7s"></span>
+				</div>
+				<div class="col-md-7 book-right agileinfo fadeInRight animated" data-wow-delay=".5s">
+                    <h5 class="wow fadeInDown animated" data-wow-delay=".6s"> Click on order from main menu.<br>
+						 <br>
+                        Click on Add to cart. Immediately item will be added to cart. <br />
+                        click on cart on top of screen. proceed to checkout. enter address and payment option (for now only COD) <br />
+			@*		<form>
+                        
+							<label>Name</label>
+							<input class="wow fadeInDown animated" data-wow-delay=".9s" type="text" value="@ViewBag.Custname" readonly="readonly" ng-model="custname" >
+						
+                            
+							<label>Phone :</label>
+							<input type="text" class="wow fadeInDown animated" id="phone" ng-model="phone" readonly="readonly" value="@ViewBag.Phone">
+						    <div class="first" style="color:ButtonFace"></div>
+
+                        <label class="wow fadeInDown animated" data-wow-delay=".5s">Date :</label>
+						<input class="wow fadeInDown animated" data-wow-delay=".5s" type="text" id="orderDate" ng-model="orderDate">
+                     
+                            <label>Select item :</label>
+                            <select class="form-control" id="menuitem" ng-model="fooditem">
+                                <option ng-repeat="food in foodItems" value="{{food.FoodItemID}}">
+                                    {{food.FoodItemName}}
+                                </option>
+                            </select>
+                       
+						
+						<div class="form-left wow fadeInDown animated" data-wow-delay=".7s">
+							<label>No.of dishes:</label>
+							<select class="form-control" id="quantity" ng-model="quantity">
+								<option>1 </option>
+								<option>2 </option>
+								<option>3 </option>
+								<option>4 </option>
+								<option>5 </option>
+								<option>6 </option>
+                                <option>7 </option>
+                                <option>8 </option>
+                                <option>9 </option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                                <option>13</option>
+                                <option>14</option>
+                                <option>15</option>
+
+							</select>
+						</div>
+						<div class="form-right wow fadeInDown animated" data-wow-delay=".7s">
+							<label>&nbsp;</label>
+							<input type="button" class="form-control" value="Add to cart" ng-click="AddToCart(fooditem, quantity)">
+						</div>
+						<div class="clearfix"> </div>
+						<label class="wow fadeInDown animated" data-wow-delay=".9s">Address Info :</label>
+						<textarea rows="4" cols="65" onblur="if (this.value == '') {this.value = 'Address';}" required="" ng-model="address" >@ViewBag.Address </textarea> 
+						<input type="submit" value="Confirm Order" ng-click="InsertOrder()">
+					</form>*@
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>	
